@@ -16,4 +16,7 @@ class pcregister extends Model
         "pc_name",
         "serial_number"
     ];
+    public function user(){
+        return $this->belongsTo(user::class);
+    }
 } 

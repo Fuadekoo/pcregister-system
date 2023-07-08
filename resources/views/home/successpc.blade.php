@@ -10,5 +10,8 @@
 <!-- //down -->
 <!-- route -> pcregister->  -->
 <a href="{{ route('downloadQRCode') }}" download="fuad">
-    <img src="data:image/png;base64,{{ $qrCodeData }}">
 </a>
+
+<img src="{{ asset($qrcode_file_path) }}" alt="QR Code">
+<a href="{{ asset($qrcode_file_path) }}" download>Download QR Code</a>
+

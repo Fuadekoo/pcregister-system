@@ -14,8 +14,8 @@
     <style>
         .logo {
             animation: moveUpDown 2s infinite;
-            width: 200px; /* Adjust the width as needed */
-            height: auto; /* Maintain aspect ratio */
+            width: 200px;
+            height: auto;
         }
         .login-register {
             display: flex;
@@ -31,8 +31,8 @@
         }
         body {
             background-color: #F8E8EE;
+            padding: 20px;
         }
-        
 
         @keyframes moveUpDown {
             0% {
@@ -48,29 +48,29 @@
     </style>
 </head>
 <body class="antialiased">
-
-
-        <div style="text-align: center;">
-            <h1 style="color:#47A992">Welcome to Our Website!</h1>
-            <h2 style="color:#47A992">ASTU</h2>
-            <img src="images/ASTU.png" alt="ASTU Logo" class="logo">
-            <br>
-            <div class="login-register">
+    <div style="text-align: center;">
+        <h1 style="color:#47A992">Welcome to Our Website!</h1>
+        <h2 style="color:#47A992">ASTU</h2>
+        <img src="images/ASTU.png" alt="ASTU Logo" class="logo">
+        <br>
+        <div class="login-register">
             <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
-        @if (Route::has('login'))
-        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-            @auth
-            <a href="{{ url('/redirect') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-            @else
-            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                @if (Route::has('login'))
+                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                        @auth
+                            <a href="{{ url('/redirect') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-        <a href="{{ url('/pcregister/searchbyqr') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" style="padding: 10%;">SCAN PC</a>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+                <br>
+                <a href="{{ url('/pcregister/searchbyqr') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" style="padding: 10%;">SCAN PC</a>
+            </div>
         </div>
     </div>
 </body>

@@ -21,18 +21,25 @@
     $.ajax({
       type: "POST",
       cache: false,
-      url : "{{action('App\Http\Controllers\PcregisterController@qr_result')}}",
+      url : "{{action('App\Http\Controllers\PcregisterController@qr_result')}}", 
       data: {"_token": "{{ csrf_token() }}",data:data},
       success: function(data) {
           // after success to get Answer from controller if User Registered login user by scanner
-          // and page change to Home blade
-       if (data==1) {
-        document.getElementById('result').innerHTML = '<span class="result">'+'Logged'+'</span>';
-          $(location).attr('href', '{{url('/home')}}');
-            }
-       else{
-        return confirm('There is no user with this qr code'); 
-       }
+
+          console.log(data);
+          // alert(data.id+' '+data.email+data.name);
+                    // and page change to Home blade
+                    document.getElementById('result').innerHTML = '<span class="">'+'User Id =>'+data.id+'<br/>  User name=> '+data.name+'<br/> User email =>'+data.email+'</span>';
+      //  if (data==1) {
+        // document.getElementById('result').innerHTML = '<span class="result">'+data.id+'Logged'+'Logged'+'</span>';
+          // $(location).attr('href', '{{url('/home')}}');
+      //       }
+      //  else{
+      //   return confirm('There is no user with this qr code'); 
+      //  }
+      },
+      error:function(data){
+        console.log(data);
       }
     })
   }
@@ -45,13 +52,13 @@
 </div>
 <hr/>
 <div class="container">
-	 © {{ date('Y') }}. Created to ASTU
+	 © {{ date('Y') }}. Created by Alireza Moosavi
 	 <br/>
 </div>
 
 <script type="text/javascript">
   $.ajaxSetup({
-  headers: {
+   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
    }
   });
@@ -109,3 +116,4 @@ span a{
 </style>
 @yield('scripts')
 @endsection
+<!--  -->

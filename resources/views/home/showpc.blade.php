@@ -1,67 +1,154 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-@include('home.header')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    @include('home.header')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .delete-button {
+            background-color: #FF0000;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            color: #FFFFFF;
+        }
+
+        .edit-button {
+            background-color: #FFFF00;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            color: #000000;
+        }
+
+        .add-button {
+            background-color: #00FF00;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            color: #FFFFFF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .home {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            overflow-x: auto;
+        }
+
+        @media (max-width: 767px) {
+            table {
+                font-size: 14px;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
-<!-- header start -->
-@include('home.navbar')
-  <!-- header end -->
+    @include('home.navbar')
+    <div style="height:150px;"></div>
+    <div class="container">
+        <section class="home">
+            <h1>ASTUPC Users Detail</h1>
+        </section>
+        @include('sweetalert::alert')
+        <section class="content">
+            <form action="{{ route('pcregisters.searchUpdate') }}" method="post" class="form-inline">
+                @csrf
+                <div class="input-group">
+                <input id="user_id" type="text" class="form-control @error('user_id') is-invalid @enderror"
+                    name="user_id" value="{{ old('user_id') }}" required autofocus placeholder="Search by user id">
+                @error('user_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                <button type="submit" class="btn btn-primary ml-2">
+                    <i class="fas fa-search"></i>
+                </button>
+               </div>
 
-  <section class="home">
-    <h1>pc info</h1>
+</form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Description</th>
+                        <th>PC Name</th>
+                        <th>Serial Number</th>
+                        <th>Photo</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($pcregisters as $pcregister)
+                    <tr>
+                        <td>{{ $pcregister->user_id }}</td>
+                        <td>{{ $pcregister->username }}</td>
+                        <td>{{ $pcregister->description }}</td>
+                        <td>{{ $pcregister->pc_name }}</td>
+                        <td>{{ $pcregister->serial_number }}</td>
+                        <td>
+                        <img src="{{asset($pcregister->photo) }}" alt="Photo" style="width: 150px; height: 120px;">
 
-  </section>
-  @include('sweetalert::alert')
 
-  <section class="content">
-    
-<table>
-    <thead>
-        <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>Description</th>
-            <th>PC Name</th>
-            <th>Serial Number</th>
-            <th>barcode</th>
-            <th>Photo</th>
-            <th>DELETE</th>
-            <th>EDIT</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($pcregisters as $pcregister)
-        <tr>
-            <td>{{ $pcregister->user_id }}</td>
-            <td>{{ $pcregister->username }}</td>
-            <td>{{ $pcregister->description }}</td>
-            <td>{{ $pcregister->pc_name }}</td>
-            <td>{{ $pcregister->serial_number }}</td>
-            <td>{!! DNS2D::getBarcodeHTML('$pcregister->barcode', 'QRCODE',2,10) !!}</td>
-            
-            <td>
-                @if($pcregister->photo)
-                
-                <img src="{{ url('storage/uploads/'.$pcregister->photo) }}" alt="Photo">
-                @else
-                No photo available
-                @endif
-            </td>
-           
-            <td><a  onClick = "confirmation(event)" href="{{ url('delete/' . $pcregister['id']) }}"  class="btn btn-danger">Delete</a></td>
+                        </td>
+                        <td>
+                            <a href="{{ url('edit/' . $pcregister['id']) }}"
+                                class="btn btn-primary edit-button">Edit</a>
+                        </td>
+                        <td>
+                            <a onClick="confirmation(event)" href="{{ url('delete/' . $pcregister['id']) }}"
+                                class="btn btn-danger delete-button">Delete</a>
+                        </td>
+                      
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </section>
+    </div>
 
-            <td><a  href="{{ url('edit/' . $pcregister['id']) }}"  class="btn btn-primary">edit</a></td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
-   </section>
-
-  <script>
+    <script>
 
     //swiitalert script code
     function confirmation(ev){
@@ -107,5 +194,12 @@
     });
   </script>
 
+
+
+    <div style="height:200px;"></div>
+    <br>
+    <hr>
+    @include('home.footer')
 </body>
+
 </html>

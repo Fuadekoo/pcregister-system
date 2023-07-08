@@ -19,8 +19,11 @@ return new class extends Migration
             $table->text("description");
             $table->string("pc_name");
             $table->string("serial_number")->unique();
+            $table->string('Register_BY');
             $table->string('barcode')->unique(); 
             $table->timestamps();
+
+            $table->foreign('Register_BY')->references('name')->on('users');
         });
     }
 

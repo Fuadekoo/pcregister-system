@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 use TCPDF;
 use Illuminate\Http\Response;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class PcregisterController extends Controller
@@ -32,6 +32,10 @@ class PcregisterController extends Controller
         'pc_name: ' . $request->pc_name . ', ' .
         'serial_number: ' . $request->serial_number;
             // Generate QRcode
+            $qrCodeData = QrCode::format('png')->size(400)->generate($data);
+            //save qrcode  to file path
+            $qrcode_file_path=storage_path('qrcode/qrcode.png');
+            file_put_contents($qrcode_file_path,$qrCodeData);
     $barcode = $data;
     
         $request->validate([
@@ -51,7 +55,9 @@ class PcregisterController extends Controller
             'serial_number.required' => 'The Serial Number field is required.',
             'serial_number.unique' => 'The Serial Number has already been taken.',
         ]);
+        $Register_BY=Auth::user()->name;
         $pcregister = new pcregister();
+        $pcregister->Register_BY = $Register_BY;
         $pcregister->user_id = $request->user_id;
         $pcregister->username = $request->username;
         $pcregister->description = $request->description;
@@ -69,9 +75,14 @@ class PcregisterController extends Controller
         $image_base64 = base64_decode($image_parts[1]);
         $fileName = uniqid() . '.png';
         
-        $file = $folderPath . $fileName;
-        Storage::put($file, $image_base64);
-        $pcregister->photo = $file;
+        // $file = $folderPath . $fileName;
+        // Storage::put($file, $image_base64);
+        // $pcregister->photo = $file;
+
+        $file = public_path('data/' . $fileName);
+        file_put_contents($file, $image_base64);
+
+        $pcregister->photo = 'data/' . $fileName;
         // dd('Image uploaded successfully: '.$fileName);
         $pcregister->barcode = $barcode;
         $pcregister->save();
@@ -84,36 +95,30 @@ class PcregisterController extends Controller
     $pdf->write2DBarcode($barcode, 'QRCODE,L', 10, 10, 50, 50, $style);
     $pdfContent = $pdf->Output('', 'S');
        // Save barcode PDF to file path
-       $filePath = 'barcode.pdf';
-       Storage::put($filePath, $pdfContent);
-        alert::success('added succcess fully','pc is register cessfully');
+    //    $filePath = 'barcode.pdf';
+    //    Storage::put($filePath, $pdfContent);
+    //     alert::success('added succcess fully','pc is register cessfully');
         // qrcode png image
-        $qrCodeData = QrCode::format('png')->size(400)->generate("fuad");
-        $qrCodeData = base64_encode($qrCodeData);
 
-         // Save barcode png to file path
+
+        //  Save barcode png to file path
     //    $filePath = 'barcode.png';
-    //    Storage::put($qrCodeData, $pdfContent);
+    //    Storage::put($filePath, $qrCodeData);
     //     alert::success('added succcess fully','pc is register cessfully');
         // return redirect()->route('pcregisters.index')->with('success', 'Data saved successfully.');
         // return redirect()->back();
-        return view('home.successpc', ['qrCodeData' => $qrCodeData]);
-        // return view('home.successpc', ['barcode' => $barcode, 'filePath' => $filePath]);
+        // return view('home.successpc', ['qrCodeData' => $qrCodeData]);
+         return view('home.successpc', ['barcode' => $barcode, 'filePath' => $qrcode_file_path]);
     }
         public function downloadQRCode()
     {
-        $qrCodeData = QrCode::format('png')->size(400)->generate("fuad");
-        $imageData = base64_encode($qrCodeData);
+        $qrcode_file_path=storage_path('qrcode/qrcode.png');
 
-        $headers = [
-            'Content-Type' => 'image/png',
-            'Content-Disposition' => 'attachment; filename="qr_code.png"',
-        ];
 
-        return Response::make($qrCodeData, 200, $headers);
+        return Response()->download($qrcode_file_path);
     }
 public function download (Request $request){
-    $test = 'barcode.pdf';
+    $test = 'barcode.png';
     $file = Storage::download($test);
 
     return $file;
@@ -157,10 +162,12 @@ public function searchUser(Request $request)
 
     if ($user) {
         return view('home.search_result', ['user' => $user]);
+        alert::success('no data','user not found');
     } else {
-        Alert::warning('Error', 'User not found');
-        alert::success('added succcess fully','pc is register cessfully');
-        return redirect()->back();
+        // Alert::warning('Error', 'User not found');
+        // alert::success('no data','user not found');
+        return view('home.search');
+    
     }
 }
 public function delete_pcregister($id)
@@ -191,9 +198,21 @@ public function update(Request $request){
             $pcregister->photo = $photoPath;
         }
      $pcregister->save();
-     alert::success('update succcess fully','pc is register scessfully updated');
+      alert::success('update succcess fully','pc is register scessfully updated');
      return redirect('index');
 }
 
+
+public function searchUpdate(Request $request)
+ {
+    $userId = $request->input('user_id');
+    $pcregister = pcregister::where('user_id', $userId)->first();
+
+    if ($pcregister) {
+        return view('home.updatepc', ['pcregister'=>$pcregister]);
+    } else {
+        return redirect()->back()->with('error', 'User not found.');
+    }
+ }
   
 }

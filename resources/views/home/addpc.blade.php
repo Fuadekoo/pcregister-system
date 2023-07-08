@@ -1,164 +1,190 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>security</title>
-  <link rel="stylesheet" href="{{ asset('home/css/security.css') }}">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="{{ asset('home/css/security.css') }}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-<style>
-     #results { padding:20px; border:1px solid; background:#ccc; }
-    /* Apply some basic styles to form elements */
-form {
-  max-width: 400px;
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
 label {
-  display: block;
-  margin-bottom: 8px;
-  color: #333; /* Set label text color */
+  font-weight: bold;
 }
 
 input[type="text"],
-textarea {
+select {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-input[type="file"] {
-  margin-bottom: 16px;
+.error {
+  color: #ff6347;
 }
 
-button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 16px;
+.text-center {
+  text-align: center;
+}
+
+/* button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #3f51b5;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
+} */
 
 button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #303f9f;
 }
 
-/* Style form labels */
-label {
-  font-weight: bold;
-  color: #555; /* Set label color */
+/* Header and Footer Styles */
+
+header,
+footer {
+  /* background-color: #303f9f; */
+  /* color: #fff; */
+  /* padding: 20px; */
 }
 
-/* Add some spacing between form elements */
-form > * {
-  margin-bottom: 16px;
+header a,
+footer a {
+  /* color: #fff; */
+  /* text-decoration: none; */
 }
 
-</style>
+/* Media Query for Responsiveness */
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+  </style>  
 </head>
+
 <body>
-<!-- header start -->
-@include('home.navbar')
-  <!-- header end -->
-<!-- BODY START -->
-@include('sweetalert::alert')
+    <!-- header start -->
+    @include('home.navbar')
+    <!-- header end -->
+    <div style="height:150px;"></div>
+    <div class="container">
+        @include('sweetalert::alert')
+        <h1>PC Register Page</h1>
 
-  <section class="home">
-    <h1>pc register page</h1>
-  </section>
+        <form method="POST" action="{{ route('pcregisters.store') }}" enctype="multipart/form-data">
+            @csrf
 
-  <section class="content">
-  <form method="POST" action="{{ route('pcregisters.store') }}" enctype="multipart/form-data">
-    @csrf
-    <label for="user_id">User ID:</label>
-    <input type="text" name="user_id" id="user_id">
-    @error('user_id')
-            <span class="error" style="color: red;">{{ $message }}</span>
-        @enderror
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username">
-    @error('username')
-            <span class="error" style="color: red;">{{ $message }}</span>
-        @enderror
-    <label for="description">Description:</label>
-    <textarea name="description" id="description"></textarea>
-    @error('description')
-            <span class="error" style="color: red;">{{ $message }}</span>
-        @enderror
-    <label for="pc_name">PC Name:</label>
-    <input type="text" name="pc_name" id="pc_name">
-    @error('pc_name')
-            <span class="error" style="color: red;">{{ $message }}</span>
-        @enderror
-    <label for="serial_number">Serial Number:</label>
-    <input type="text" name="serial_number" id="serial_number">
-    @error('serial_number')
-            <span class="error" style="color: red;">{{ $message }}</span>
-        @enderror
-    <label for="photo">Photo:</label>
-    <!-- <input type="file" name="photo" id="photo"> -->
-    <div class="row">
-            <div class="col-md-6">
-                <div id="my_camera"></div>
-                <br/>
-                <input type=button value="Take Snapshot" onClick="take_snapshot()">
-                <input type="hidden" name="photo" class="image-tag" id="photo">
+            <label for="user_id">User ID:</label>
+            <input type="text" name="user_id" id="user_id">
+            <br/>
+            @error('user_id')
+            <span class="error">{{ $message }}</span>
+            @enderror
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            @error('username')
+            <span class="error">{{ $message }}</span>
+            @enderror
+
+            <label for="description">Description:</label>
+            <select name="description" id="description">
+                <option value="teacher">Teacher</option>
+                <option value="student">Student</option>
+                <option value="other">Other</option>
+            </select>
+            @error('description')
+            <span class="error">{{ $message }}</span>
+            @enderror
+
+
+            <label for="pc_name">PC Name:</label>
+            <input type="text" name="pc_name" id="pc_name">
+            @error('pc_name')
+            <span class="error">{{ $message }}</span>
+            @enderror
+
+            <label for="serial_number">Serial Number:</label>
+            <input type="text" name="serial_number" id="serial_number">
+            @error('serial_number')
+            <span class="error">{{ $message }}</span>
+            @enderror
+
+            <label for="photo">Photo:</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="my_camera"></div>
+                    <br />
+                    <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                    <input type="hidden" name="photo" class="image-tag" id="photo">
+                </div>
+                <div class="col-md-6">
+                    <div id="results"></div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <div id="results">Your captured image will appear here...</div>
+
+            <div class="text-center">
+                <button type="submit">Save</button>
             </div>
-            <div class="col-md-12 text-center">
-    <button type="submit">Save</button>
-</form>
-  </section>
-<!-- BODY END -->
-  <script>
-    //access camera 
-    Webcam.set({
-        width: 490,
-        height: 350,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-    });
-    
-    Webcam.attach( '#my_camera' );
-    
-    function take_snapshot() {
-        Webcam.snap( function(data_uri) {
-            $(".image-tag").val(data_uri);
-            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
-        } );
-    }
-    //Javacript for the scroll indicator bar
-    window.addEventListener("scroll", () => {
-      const indicatorBar = document.querySelector(".scroll-indicator-bar");
+        </form>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+    <script>
+        Webcam.set({
+            width: 490,
+            height: 350,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
 
-      const pageScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollValue = (pageScroll / height) * 100;
+        Webcam.attach('#my_camera');
 
-      indicatorBar.style.width = scrollValue + "%";
-    });
-
-    //Responsive navigation menu toggle
-    const menuBtn = document.querySelector(".nav-menu-btn");
-    const closeBtn = document.querySelector(".nav-close-btn");
-    const navigation = document.querySelector(".navigation");
-
-    menuBtn.addEventListener("click", () => {
-      navigation.classList.add("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-      navigation.classList.remove("active");
-    });
-  </script>
-
+        function take_snapshot() {
+            Webcam.snap(function(data_uri) {
+                $(".image-tag").val(data_uri);
+                document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+            });
+        }
+    </script>
+    <br>
+    <hr>
+@include('home.footer')
 </body>
+
 </html>
