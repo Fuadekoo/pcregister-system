@@ -25,7 +25,9 @@ class adminController extends Controller
         $pcregisters = pcregister::all();
         return view('admin.pclist', compact('pcregisters'));
     }
-   
+   public function allregister(){
+    return view('admin.register');
+   }
     public function permission()
     {
         $users = User::all();
@@ -48,6 +50,10 @@ class adminController extends Controller
         }
     
         return redirect()->back()->with('error', 'User not Granted!!.');
+    }
+    public function about(){
+        return view('admin.about');
+
     }
 
 

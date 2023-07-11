@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PcregisterController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\Excelcontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +78,14 @@ Route::middleware(['auth', 'web','usertype:1'])->group(function () {
 
     Route::get('/permission', [adminController::class, 'permission'])->name('home.permisson');
     Route::post('/admin/update', [adminController::class, 'update'])->name('admin.update');
+
+
+
+
+    Route::get('/export', [Excelcontroller::class, 'export'])->name('export');
+    Route::post('/import', [Excelcontroller::class, 'import'])->name('import');
+    Route::get('/register', [adminController::class, 'allregister'])->name('register');
+    Route::get('/about', [adminController::class, 'about'])->name('about.admin');
 
     });
     Route::middleware(['auth', 'web','usertype:2'])->group(function () {

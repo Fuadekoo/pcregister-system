@@ -28,7 +28,25 @@
             <li class="breadcrumb-item active">pclist</li>
         </ol>
     </nav>
+
+        <div>
+            <form action="{{ route('pcregisters.searchUser') }}" method="post" class="form-inline">
+                @csrf
+                <div class="input-group">
+                  <input id="user_id" type="text" class="form-control @error('user_id') is-invalid @enderror"
+                    name="user_id" value="{{ old('user_id') }}" required autofocus>
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+        </div>
+        <div>
         <h1>pclist</h1>
+        </div>
+ 
         <section class="content">
         <table>
                 <thead>
@@ -39,7 +57,8 @@
                         <th>PC Name</th>
                         <th>Serial Number</th>
                         <th>Photo</th>
-                       
+                        <th>register by</th>
+                       <th>delete</th>
                     </tr>
                 </thead>
                 <tbody>
