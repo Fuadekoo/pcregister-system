@@ -31,11 +31,7 @@ class PcregisterController extends Controller
         'description: ' . $request->description . ', ' .
         'pc_name: ' . $request->pc_name . ', ' .
         'serial_number: ' . $request->serial_number;
-            // Generate QRcode
-            $qrCodeData = QrCode::format('png')->size(400)->generate($data);
-            //save qrcode  to file path
-            $qrcode_file_path=storage_path('qrcode/qrcode.png');
-            file_put_contents($qrcode_file_path,$qrCodeData);
+           
     $barcode = $data;
     
         $request->validate([
@@ -64,6 +60,7 @@ class PcregisterController extends Controller
         $pcregister->pc_name = $request->pc_name;
         $pcregister->serial_number = $request->serial_number;
 
+
         // Handle photo upload 
         $img = $request->photo;
         $folderPath = "uploads/";
@@ -84,6 +81,13 @@ class PcregisterController extends Controller
 
         $pcregister->photo = 'data/' . $fileName;
         // dd('Image uploaded successfully: '.$fileName);
+
+        
+         // Generate QRcode
+         $qrCodeData = QrCode::format('png')->size(400)->generate($pcregister->user_id);
+         //save qrcode  to file path
+         $qrcode_file_path=storage_path('qrcode/qrcode.png');
+         file_put_contents($qrcode_file_path,$qrCodeData);
         $pcregister->barcode = $barcode;
         $pcregister->save();
             // Generate barcode PDF
@@ -108,7 +112,7 @@ class PcregisterController extends Controller
         // return redirect()->route('pcregisters.index')->with('success', 'Data saved successfully.');
         // return redirect()->back();
         // return view('home.successpc', ['qrCodeData' => $qrCodeData]);
-         return view('home.successpc', ['barcode' => $barcode, 'filePath' => $qrcode_file_path]);
+         return view('home.successpc', ['filePath' => $qrcode_file_path]);
     }
         public function downloadQRCode()
     {
@@ -133,19 +137,30 @@ public function download (Request $request){
         return view('auth.scanQrcode');
     }
     public function qr_result(Request $request){
-        $result =0;
-        $data = $request->getContent();
-        if ($request->data) {
-            $user = pcregister::where('barcode',$request->data)->first();
-            if ($user) {
-                return view('home.search_result', ['user' => $user]);
-                $result =1;
-             }else{
-                 $result =0;
-                 return redirect()->back();
-             }
+        $data = $request->input('data');
+        $user = pcregister::where('user_id', $data)->first();
+    
+        if ($user) {
+
+            
+            $userDetails = [
+                'userid' => $user->user_id,
+                'name' => $user->username,
+                'serial' => $user->serial_number,
+                'description'=>$user->description,
+                'pc_name'=>$user->pc_name,
+                'photo'=>$user->photo,
+            ];
+    
+            return response()->json([
+                'userExists' => true,
+                'userDetails' => $userDetails
+            ]);
+        } else {
+            return response()->json([
+                'userExists' => false
+            ]);
         }
-        return $result;
 
     }
     
@@ -161,10 +176,11 @@ public function searchUser(Request $request)
     $user = pcregister::where('user_id',$userId)->first();
 
     if ($user) {
+        // alert::success('user found','user are correctly found');
         return view('home.search_result', ['user' => $user]);
-        alert::success('no data','user not found');
+       
     } else {
-        // Alert::warning('Error', 'User not found');
+        alert::success('user found','user are correctly found');
         // alert::success('no data','user not found');
         return view('home.search');
     
@@ -214,5 +230,11 @@ public function searchUpdate(Request $request)
         return redirect()->back()->with('error', 'User not found.');
     }
  }
+ 
+ public function alldownload(){
+    $pcregisters=pcregister::all();
+    return view('home.successpc', ['pcregisters' => $pcregisters,]);
+ } 
+
   
 }

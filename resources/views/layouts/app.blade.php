@@ -8,6 +8,8 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
@@ -43,5 +45,7 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+
     </body>
 </html>

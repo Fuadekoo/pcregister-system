@@ -79,6 +79,9 @@ button[type="submit"]:hover {
           <a class="nav-link" href="{{ url('/pcregisters/addpc') }}">ADD</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/alldownload">QRCODE</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ url('/pcregisters') }}">UPDATE INFO</a>
         </li>
         <li class="nav-item">

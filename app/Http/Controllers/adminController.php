@@ -18,7 +18,38 @@ class adminController extends Controller
         return view('admin.component',compact('user','admin','studentpc','teacherpc','otherpc'));
     }
     public function showsecurity(){
-
+        $users = user::all();
+        return view('admin.securitylist', compact('users'));
     }
+    public function showpc(){
+        $pcregisters = pcregister::all();
+        return view('admin.pclist', compact('pcregisters'));
+    }
+   
+    public function permission()
+    {
+        $users = User::all();
+        $userType = User::where('usertype', 2)->value('usertype'); // Default user type value
+        return view('admin.permission', compact('users', 'userType'));
+    }
+ 
+    public function update(Request $request)
+    {
+        $userId = $request->user_id; // Update parameter name to 'user_id'
+        $userType = $request->usertype;
+    
+        $user = User::find($userId);
+    
+        if ($user) {
+            $user->usertype = $userType;
+            $user->save();
+    
+            return redirect()->back()->with('success', 'User Granted successfully.');
+        }
+    
+        return redirect()->back()->with('error', 'User not Granted!!.');
+    }
+
+
 
 }

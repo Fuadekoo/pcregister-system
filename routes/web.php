@@ -31,8 +31,7 @@ Route::middleware([
 });
 route::get('redirect',[HomeController::class,'redirect']);
 route::get('index',[HomeController::class,'index']);
-Route::get('/pcregister/searchbyqr', [PcregisterController::class, 'searchbyqr'])->name('pcregisters.searchbyqr');
-Route::post('/pcregister/searchbyqr', [PcregisterController::class, 'qr_result'])->name('download.qr_result');
+
 // Authenticated routes with session timeout and verification
 Route::middleware([
     'auth',
@@ -62,9 +61,23 @@ Route::get('download', [PcregisterController::class, 'download'])->name('downloa
 // Route::get('/download-qr-code', 'YourController@downloadQRCode')->name('downloadQRCode');
 Route::get('download-qr-code', [PcregisterController::class, 'downloadQRCode'])->name('downloadQRCode');
 
+Route::get('/pcregister/searchbyqr', [PcregisterController::class, 'searchbyqr'])->name('pcregisters.searchbyqr');
+
+Route::post('/pcregister/searchbyqr', [PcregisterController::class, 'qr_result'])->name('download.qr_result');
+Route::get('/alldownload', [PcregisterController::class, 'alldownload'])->name('alldownload');
+
 });
 
 
 Route::middleware(['auth', 'web','usertype:1'])->group(function () {
     Route::get('/component', [adminController::class, 'component'])->name('component');
+    Route::get('/securitylist', [adminController::class, 'showsecurity'])->name('showsecurity');
+    Route::get('/pclist', [adminController::class, 'showpc'])->name('showpc');
+
+    Route::get('/permission', [adminController::class, 'permission'])->name('home.permisson');
+    Route::post('/admin/update', [adminController::class, 'update'])->name('admin.update');
+
     });
+    Route::middleware(['auth', 'web','usertype:2'])->group(function () {
+        
+        });

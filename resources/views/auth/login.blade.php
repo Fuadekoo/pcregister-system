@@ -1,48 +1,126 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<style>
+    /* Custom Login Page Styles */
+    body {
+        background-color: #f7fafc;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-        <x-validation-errors class="mb-4" />
+    .login-container {
+        max-width: 400px;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
+    .login-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333333;
+    }
+
+    .form-control {
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .form-check {
+        margin-bottom: 20px;
+    }
+
+    .form-check-label {
+        font-size: 14px;
+    }
+
+    .forgot-password-link {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+        display: block;
+        text-align: right;
+        text-decoration: none;
+    }
+
+    .submit-button {
+        background-color: #4caf50;
+        color: #ffffff;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .submit-button:hover {
+        background-color: #45a049;
+    }
+
+    .icon-lock,
+    .icon-person {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+    .icon-lock {
+        background-image: url('lock-icon.png'); /* Replace with your lock icon image path */
+    }
+
+    .icon-person {
+        background-image: url('person-icon.png'); /* Replace with your person icon image path */
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+<a href="#" class="navbar-brand">
+    <!-- <img src="{{ asset('images/astu.png') }}" alt="Logo" class="logo-img"> -->
+</a>
+
+<div class="login-container">
+    <div class="login-title">Login</div>
+
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+
+        <div class="mb-3">
+            <span class="icon-person"></span>
+            <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Email" />
+        </div>
+
+        <div class="mb-3">
+            <span class="icon-lock"></span>
+            <input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" placeholder="Password" />
+        </div>
+
+        <div class="mb-3 form-check">
+            <input class="form-check-input" type="checkbox" id="remember_me" name="remember" />
+            <label class="form-check-label" for="remember_me">{{ __('Remember me') }}</label>
+        </div>
+
+        @if (Route::has('password.request'))
+            <a class="forgot-password-link" href="{{ route('password.request') }}">
+                {{ __('Forgot your password?') }}
+            </a>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+        <button class="submit-button" type="submit">
+            {{ __('Log in') }}
+        </button>
+    </form>
+</div>

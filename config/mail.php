@@ -97,15 +97,22 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
+    'stream'=>[
+        'ssl'=>[
+            'allow_self_signed'=>true,
+            'verify_peer'=>false,
+            'verify_peer_name'=>false,
+        ],
+    ],
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'fuadabdurahman0859@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'pcregister system'),
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Markdown Mail Settings
+    | Mark down Mail Settings
     |--------------------------------------------------------------------------
     |
     | If you are using Markdown based email rendering, you may configure your
