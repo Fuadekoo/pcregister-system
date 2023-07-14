@@ -79,7 +79,7 @@ button[type="submit"]:hover {
           <a class="nav-link" href="{{ url('/pcregisters/addpc') }}">ADD</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/alldownload">QRCODE</a>
+          <a class="nav-link" href="/download-code">QRCODE</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url('/pcregisters') }}">UPDATE INFO</a>
@@ -94,7 +94,7 @@ button[type="submit"]:hover {
           </form>
         </li>
         <li class="nav-item">
-          <form action="{{ route('pcregisters.searchUser') }}" method="post" class="form-inline">
+          <form action="{{ route('pcregisters.searchUser') }}" method="post" id ="barcodeForm" class="form-inline">
             @csrf
             <div class="input-group">
               <input id="user_id" type="text" class="form-control @error('user_id') is-invalid @enderror"

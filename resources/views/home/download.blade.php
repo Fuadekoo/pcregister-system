@@ -1,61 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-@include('home.header')
-</head>
-<body>
-<!-- header start -->
-@include('home.navbar')
-  <!-- header end -->
+ <html lang="en">
+ <head>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('home/css/security.css') }}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <title>qrcode generation</title>
+ </head>
+ <body style="text-align:center;">
+  
+ @include('home.navbar')
+<div style="height:150px;"></div>
+ <h1>QrCOde download page</h1>
 
-  <section class="home">
-    <h1>ASTU</h1>
-  </section>
 
-  <section class="content">
-  @foreach($pcregisters as $pcregister)
-    @if(isset($pcregister->user_id))
-        <a href="{{ route('downloadQRCode') }}" download>
-        {{$pcregister->username}}:
-            <img src="{{ asset('qrcode/' . $pcregister->user_id . '.png') }}" alt="QR Code">
-        </a>
-        <a href="{{ route('downloadBarCode') }}" download>
-            
-            <img src="{{ asset('barcode/' . $pcregister->user_id . '.png') }}" alt="Barcode">
-        </a>
-        <br><br>
-    @else
-        No photo available
-    @endif
-@endforeach
-    <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta a veniam ad necessitatibus voluptatem ducimus, aperiam eveniet cum sint accusantium pariatur dolorum et deserunt sit? Quasi quia iure eligendi minus, inventore vitae dolor qui nemo, ad cumque velit? Asperiores ipsam, nulla eaque voluptas autem ratione veniam error a maiores, sunt libero veritatis neque cumque ab delectus optio amet nemo numquam molestias, saepe labore natus! Dicta perferendis eius necessitatibus. Incidunt veniam tempora hic molestias soluta reprehenderit quisquam laborum earum amet vel ad quo inventore deserunt possimus at ipsa odio repudiandae eligendi deleniti dicta, commodi ipsum culpa ex suscipit! Laborum, mollitia placeat.</p> -->
-   </section>
 
-  <script>
-    //Javacript for the scroll indicator bar
-    window.addEventListener("scroll", () => {
-      const indicatorBar = document.querySelector(".scroll-indicator-bar");
+   
 
-      const pageScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollValue = (pageScroll / height) * 100;
 
-      indicatorBar.style.width = scrollValue + "%";
-    });
+<!-- //down -->
 
-    //Responsive navigation menu toggle
-    const menuBtn = document.querySelector(".nav-menu-btn");
-    const closeBtn = document.querySelector(".nav-close-btn");
-    const navigation = document.querySelector(".navigation");
+@if(isset($user) && is_object($user))
+{{$user->username}}:
+    <a href="{{ route('downloadBarCode', ['username' => $user->username]) }}" download>
+        <img src="{{ asset('barcode/'.$user->username.'.png') }}" alt="Barcode">
+    </a>
+    <a href="{{ route('downloadQRCode', ['username' => $user->username]) }}" download>
+        <img src="{{ asset('qrcode/'.$user->username.'.png') }}" alt="qrcode">
+    </a>
+@endif
 
-    menuBtn.addEventListener("click", () => {
-      navigation.classList.add("active");
-    });
 
-    closeBtn.addEventListener("click", () => {
-      navigation.classList.remove("active");
-    });
-  </script>
+    <br><br>
 
-</body>
-</html>
+
+
+
+<div style="height:200px"></div>
+<br>
+    <hr>
+@include('home.footer')
+ </body>
+ </html>

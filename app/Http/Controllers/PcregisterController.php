@@ -7,6 +7,7 @@ use App\Models\pcregister;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Session;
 use Ramsey\Uuid\Uuid;
+use Picqer\Barcode\BarcodeGeneratorPNG;
 use BaconQrCode\Encoder\Encoder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -88,18 +89,26 @@ class PcregisterController extends Controller
          // Generate QRcode
          $qrCodeData = QrCode::format('png')->size(400)->generate($pcregister->user_id);
          //save qrcode  to file path
-         $qrcode_file_path=storage_path('qrcode/qrcode.png');
-         file_put_contents($qrcode_file_path,$qrCodeData);
+    
 
 
          // Generate barcode
      // Replace with your barcode data
     $barcodeGenerator = new BarcodeGeneratorPNG();
     $barcodeImage = $barcodeGenerator->getBarcode($pcregister->user_id, $barcodeGenerator::TYPE_CODE_128);
+ 
+$userId = $pcregister->username;
+$barcodeFilePath = storage_path('barcode/' . $userId . '.png');
+    file_put_contents($barcodeFilePath, $barcodeImage);
 
+
+
+// Save QR code to a file
+    $qrCodeFilePath = storage_path('qrcode/'.$userId.'.png');
+    file_put_contents($qrCodeFilePath, $qrCodeData);
     // Save barcode to a file
-        $barcodeFilePath = storage_path('barcode/barcode.png');
-        file_put_contents($barcodeFilePath, $barcodeImage);
+        // $barcodeFilePath = storage_path('barcode/barcode.png');
+        // file_put_contents($barcodeFilePath, $barcodeImage);
         $pcregister->barcode = $barcode;
         $pcregister->save();
             // Generate barcode PDF
@@ -107,8 +116,8 @@ class PcregisterController extends Controller
     $pdf->AddPage();
     $pdf->SetFont('helvetica', '', 12);
     $style = array('N'); // Create an array with the style value
-
-    $pdf->write2DBarcode($barcode, 'QRCODE,L', 10, 10, 50, 50, $style);
+    $barcode = '123456789';
+    $pdf->write1DBarcode($barcode, 'C39', '', '', 80, 25, 0.4, $style, 'N');
     $pdfContent = $pdf->Output('', 'S');
        // Save barcode PDF to file path
     //    $filePath = 'barcode.pdf';
@@ -124,22 +133,47 @@ class PcregisterController extends Controller
         // return redirect()->route('pcregisters.index')->with('success', 'Data saved successfully.');
         // return redirect()->back();
         // return view('home.successpc', ['qrCodeData' => $qrCodeData]);
-         return view('home.successpc', ['filePath' => $qrcode_file_path]);
+        
+        $pcregisters=pcregister::all();
+      
+        session()->flash('success', 'PC is registered successfully');
+        return view('home.successpc', ['pcregisters' => $pcregisters,'barcode' => $barcode, 'qrCodeData' => $qrCodeFilePath]);
+    
+        // session()->flash('error', 'Failed to register PC');
+        // return view('home.successpc', ['barcode' => $barcode,])->with('user', $user);
+    
     }
-        public function downloadQRCode()
+        public function downloadQRCode(Request $request)
     {
-        $qrcode_file_path=storage_path('qrcode/qrcode.png');
-
-
-        return Response()->download($qrcode_file_path);
+        $userId = $request->input('username');
+        $filePath = storage_path('qrcode/' . $userId . '.png');
+        
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            // Handle the scenario when the QR code file does not exist
+            return redirect()->back()->with('message', 'QR code file not found.');
+        }
     }
-
+    public function downloadBothCode(Request $request)
+    {
+        $pcregisters=pcregister::all();
+        return view('home.successpc', ['pcregisters' => $pcregisters,]);
+    
+    
+    }
 
     public function downloadBarCode(Request $request)
     {
-        $filePath = storage_path('barcode/barcode.png');
-      return response()->download($filePath);
-    
+        $userId = $request->input('username');
+        $filePath = storage_path('barcode/' . $userId . '.png');
+        
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            // Handle the scenario when the QR code file does not exist
+            return redirect()->back()->with('message', 'QR code file not found.');
+        }
     
     }
 public function download (Request $request){
@@ -257,33 +291,21 @@ public function searchUpdate(Request $request)
     return view('home.successpc', ['pcregisters' => $pcregisters,]);
  } 
 
- public function barcodescan_page(){
-    return view('home.scanbarcode');
- }
- public function barcodescan(Request $request)
+
+ public function searchBarcode(Request $request)
  {
     $userId = $request->input('user_id');
+    // $user = pcregister::find($userId);
+    $user = pcregister::where('user_id',$userId)->first();
 
-    // Search for data in the database based on the scanned barcode
-    $pcregister = pcregister::where('user_id', $userId)->first();
-
-    if ($pcregister) {
-        // Barcode found in the database, return the user details
-        $user = [
-            'name' => $pcregister->name,
-        ];
-
-        return response()->json([
-            'found' => true,
-            'user' => $user,
-        ]);
+    if ($user) {
+        return view('home.download', ['user' => $user]);
     } else {
-        // Barcode not found in the database
-        return response()->json([
-            'found' => false,
-        ]);
+        
+        return view('home.search',);
     }
- }
 
+
+ }
   
 }

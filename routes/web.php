@@ -62,17 +62,22 @@ Route::get('download', [PcregisterController::class, 'download'])->name('downloa
 // Route::post('/pcregister/searchbyqr', [PcregisterController::class, 'qr_result'])->name('download.qr_result');
 // Route::get('/download-qr-code', 'YourController@downloadQRCode')->name('downloadQRCode');
 Route::get('download-qr-code', [PcregisterController::class, 'downloadQRCode'])->name('downloadQRCode');
+Route::get('download-barcode', [PcregisterController::class, 'downloadBarCode'])->name('downloadBarCode');
 
 Route::get('/pcregister/searchbyqr', [PcregisterController::class, 'searchbyqr'])->name('pcregisters.searchbyqr');
 
 Route::post('/pcregister/searchbyqr', [PcregisterController::class, 'qr_result'])->name('download.qr_result');
 
-Route::get('/barcodescan', [PcregisterController::class,'barcodescan_page'])->name('barcodescan_page');
 
-Route::post('/barcodescan', [PcregisterController::class,'barcodescan'])->name('barcodescan');
+// Route::get('/alldownload', [PcregisterController::class, 'alldownload'])->name('alldownload');
 
-Route::get('/alldownload', [PcregisterController::class, 'alldownload'])->name('alldownload');
 
+Route::get('barcodeSearch', [PcregisterController::class, 'searchBarcode'])->name('pcregisters.searchBarcode');
+    Route::post('barcodeSearch', [PcregisterController::class, 'searchBarcode'])->name('pcregisters.searchBarcode');
+
+
+    
+Route::get('download-code', [PcregisterController::class, 'downloadBothCode'])->name('downloadBothCode');
 });
 
 
