@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Barcode Reader Example</title>
+    <link rel="icon" href="images/ASTU.png" type="image/x-icon">
 </head>
 <body>
     <div id="reader">

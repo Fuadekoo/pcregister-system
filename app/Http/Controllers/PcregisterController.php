@@ -52,7 +52,7 @@ class PcregisterController extends Controller
             'serial_number.required' => 'The Serial Number field is required.',
             'serial_number.unique' => 'The Serial Number has already been taken.',
         ]);
-        $Register_BY=Auth::user()->name;
+        $Register_BY=Auth::user()->security_id;
         $pcregister = new pcregister();
         $pcregister->Register_BY = $Register_BY;
         $pcregister->user_id = $request->user_id;
@@ -235,7 +235,7 @@ public function searchUser(Request $request)
         return view('home.search_result', ['user' => $user]);
        
     } else {
-        alert::success('user found','user are correctly found');
+        // alert::success('user found','user are correctly found');
         // alert::success('no data','user not found');
         return view('home.search');
     

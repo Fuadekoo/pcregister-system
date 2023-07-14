@@ -13,8 +13,10 @@ class HomeController extends Controller
         return view('home.scanQrcode');
     }
     public function redirect(){
-        $usertype=auth::user()->usertype;
-        if($usertype == 1){
+        $user=auth()->user();
+        if($user){   
+        // $usertype=auth::user()->usertype;
+        if( $user->usertype == 1){
             $alluser=user::all()->count();
             $user=user::where('usertype','0')->count();
             $admin=user::where('usertype','1')->count();
@@ -25,7 +27,7 @@ class HomeController extends Controller
             return view('admin.dashboard',compact('alluser','user','admin','fake','studentpc','teacherpc','otherpc'));
             // return view('admin.home');
         }
-        elseif($usertype == 0){
+        elseif($user->usertype == 0){
             return view('home.scanQrcode');
         }
         else
@@ -33,8 +35,10 @@ class HomeController extends Controller
             return view('home.fake');
              
         }
+        
 
     }
+    return view('auth.login');
     
-    
+}
 }

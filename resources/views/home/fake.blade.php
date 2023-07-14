@@ -50,6 +50,7 @@
 }
 
 </style>
+<link rel="icon" href="images/ASTU.png" type="image/x-icon">
 <!-- HTML Markup -->
 <div class="permission-message">
   <div class="error-symbol">

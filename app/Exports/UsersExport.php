@@ -13,10 +13,10 @@ class UsersExport implements FromCollection
     */
     public function collection()
     {
-        return User::where('usertype', 0)->get(['name', 'email','password']);
+        return User::where('usertype', 0)->get(['security_id','name', 'email','password']);
     }
     public function headings(): array
     {
-        return ['Name', 'Email','password'];
+        return ['security_id','Name', 'Email','password'];
     }
 }

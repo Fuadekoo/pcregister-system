@@ -5,8 +5,8 @@
         <h4>{{Auth::user()->name }}</h4>
       </center>
       <a href="/redirect"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-      <a href="/allregister"><i class="fas fa-users"></i><span>All security register</span></a>
-      <a href="/register"><i class="fas fa-user-plus"></i><span>single security register</span></a>
+      <a href="/allregister"><i class="fas fa-users"></i><span>Upload users</span></a>
+      <a href="/register"><i class="fas fa-user-plus"></i><span>user registeration</span></a>
       <a href="/permission"><i class="fas fa-key"></i><span>permission</span></a>
       <a href="#"><i class="fas fa-code"></i><span>developer</span></a>
 

@@ -79,10 +79,10 @@ button[type="submit"]:hover {
           <a class="nav-link" href="{{ url('/pcregisters/addpc') }}">ADD</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/download-code">QRCODE</a>
+          <a class="nav-link" href="/download-code">DOWNLOAD</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/pcregisters') }}">UPDATE INFO</a>
+          <a class="nav-link" href="{{ url('/pcregisters') }}">TASK</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('profile.show') }}">PROFILE</a>

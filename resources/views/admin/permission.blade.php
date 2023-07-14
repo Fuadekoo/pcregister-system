@@ -24,11 +24,11 @@
     <div class="container-fluid px-4">
     <h1 class="mt-5">Grant permission for User</h1>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-4">
+        <ol class="breadcrumb mb-5">
             <li class="breadcrumb-item active">Grant permission for User</li>
         </ol>
     </nav>
-    <h2>Grant permission for User</h2>
+    <!-- <h2>Grant permission for User</h2> -->
     <form action="{{ route('admin.update') }}" method="POST" class="form">
     @csrf
     <div class="form-group">

@@ -76,6 +76,9 @@
         vertical-align: middle;
         margin-right: 10px;
     }
+    /* .logo{
+        background-image: url('{{ asset('images/guard.png') }}');
+    } */
 
     .icon-lock {
     background-image: url('{{ asset('images/lock-solid.svg') }}');
@@ -86,6 +89,7 @@
         background-image: url('{{ asset('images/user-solid.svg') }}'); /* Replace with your person icon image path */
     }
 </style>
+<link rel="icon" href="images/guard.png" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   
@@ -94,8 +98,8 @@
 </a>
 
 <div class="login-container">
-    <div>
-        <h1>GET-PC MANAGEMENT SYSTEM</h1>
+    <div style="color:green" class="logo">
+        <h1>ASTU GET-PC MS</h1>
     </div>
     <div class="login-title">Login</div>
 
@@ -120,16 +124,7 @@
 
 
 
-        <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" id="remember_me" name="remember" />
-            <label class="form-check-label" for="remember_me">{{ __('Remember me') }}</label>
-        </div>
-
-        @if (Route::has('password.request'))
-            <a class="forgot-password-link" href="{{ route('password.request') }}">
-                {{ __('Forgot your password?') }}
-            </a>
-        @endif
+   
 
         <button class="submit-button" type="submit">
             {{ __('Log in') }}

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <title>QR Code Generation</title>
+    <link rel="icon" href="images/ASTU.png" type="image/x-icon">
     <style>
         body {
             text-align: center;
@@ -75,7 +76,7 @@
         <br><br>
         @foreach($pcregisters as $pcregister)
         <a href="{{ route('downloadQRCode', ['username' => $pcregister->username]) }}" download>
-            {{ $pcregister->username }}:
+            {{ $pcregister->user_id }}:
             <img src="{{ asset('qrcode/'.$pcregister->username.'.png') }}" alt="QR Code">
         </a>
         <a href="{{ route('downloadBarCode', ['username' => $pcregister->username]) }}" download>

@@ -26,10 +26,10 @@
 
     <div class="content">
         <div class="container-fluid px-4">
-    <h1 class="mt-4">Dashboard</h1>
+    <h1 class="mt-5">Dashboard</h1>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
+        <ol class="breadcrumb mb-5">
+            <li class="breadcrumb-item active">all security register</li>
         </ol>
     </nav>
     <form action="{{ route('import') }}" method="post" enctype="multipart/form-data" class="my-4">
@@ -39,7 +39,19 @@
         <button type="submit" class="btn btn-primary">Import</button>
     </div>
 </form>
-
+<div>
+  <h1>import excel file is must be 6 colomns</h1>
+  <p>must be writen in this form</p>
+  <ul>
+    <li>security_id</li>
+    <li>name</li>
+    <li>emails</li>
+    <li>phone</li>
+    <li>adreess</li>
+    <li>password</li>
+  </ul>
+  <p>only the above form is include in excel files</p>
+</div>
 </div>
 
     </div>

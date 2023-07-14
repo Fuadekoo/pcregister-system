@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12">
         <h3>About Us</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <p>this software is developed for Adama Science and Technology University.it si used to check student and staff member laptop register and check owner of their devices.</p>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
         <h3>Contact Us</h3>
@@ -16,9 +16,9 @@
       <div class="col-lg-4 col-md-12 col-sm-12">
         <h3>Follow Us</h3>
         <ul class="social-media">
-          <li><a href="#"><i class="uil uil-facebook"></i></a></li>
-          <li><a href="#"><i class="uil uil-twitter"></i></a></li>
-          <li><a href="#"><i class="uil uil-instagram"></i></a></li>
+          <li><a href="https://www.facebook.com/adamaastu/"><i class="uil uil-facebook"></i></a></li>
+          <li><a href="https://www.astu.edu.et/"><i class="uil uil-twitter"></i></a></li>
+          <li><a href="https://www.astu.edu.et/"><i class="uil uil-instagram"></i></a></li>
         </ul>
       </div>
     </div>

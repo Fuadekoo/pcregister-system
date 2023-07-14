@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+<link rel="icon" href="images/ASTU.png" type="image/x-icon">
 @include('home.header')
 </head>
 <body>

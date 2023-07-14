@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <title>qrcode generation</title>
+    <link rel="icon" href="images/ASTU.png" type="image/x-icon">
  </head>
  <body style="text-align:center;">
   
@@ -22,7 +23,7 @@
 <!-- //down -->
 
 @if(isset($user) && is_object($user))
-{{$user->username}}:
+{{$user->user_id}}:
     <a href="{{ route('downloadBarCode', ['username' => $user->username]) }}" download>
         <img src="{{ asset('barcode/'.$user->username.'.png') }}" alt="Barcode">
     </a>

@@ -17,7 +17,7 @@ class Excelcontroller extends Controller
     {
         $request->validate(['users'=>['required']]);
         Excel::import(new UsersImport, $request->file('users'));
-        
-        return redirect('/')->with('success', 'All good!');
+        // dd('fuad');
+        return redirect('/redirect')->with('success', 'All good!');
     }
 }
