@@ -75,7 +75,6 @@
 
                         </td>
                         <td>{{$pcregister->Register_BY}}</td>
-
                       
                     </tr>
                     @endforeach

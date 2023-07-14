@@ -4,11 +4,11 @@
 
         <h4>{{Auth::user()->name }}</h4>
       </center>
-      <a href="#"><i class="fas fa-desktop"></i><span>home</span></a>
-      <a href="/component"><i class="fas fa-cogs"></i><span>Dashboard</span></a>
-      <a href="/register"><i class="fas fa-info-circle"></i><span>register security</span></a>
-      <a href="/permission"><i class="fas fa-table"></i><span>permission</span></a>
-      <a href="#"><i class="fas fa-th"></i><span>calender</span></a>
-      <a href="/about"><i class="fas fa-info-circle"></i><span>About</span></a>
-      <a href="{{ route('profile.show') }}"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+      <a href="/redirect"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="/allregister"><i class="fas fa-users"></i><span>All security register</span></a>
+      <a href="/register"><i class="fas fa-user-plus"></i><span>single security register</span></a>
+      <a href="/permission"><i class="fas fa-key"></i><span>permission</span></a>
+      <a href="#"><i class="fas fa-code"></i><span>developer</span></a>
+
+      <a href="{{ route('profile.show') }}"><i class="fas fa-cog"></i><span>Settings</span></a>
     </div>

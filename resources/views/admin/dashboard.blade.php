@@ -26,7 +26,7 @@
 
     <div class="content">
         <div class="container-fluid px-4">
-    <h1 class="mt-4">Dashboard</h1>
+    <h1 class="mt-5">Dashboard</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>
@@ -44,13 +44,26 @@
                 </div>
             </div>
         </div>
+
         <div class="col-xl-3 col-md-6">
             <div class="card bg-info text-white mb-4">
                 <div class="card-body">Total admin
                     <h2> {{$admin}}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="/securitylist">View Details</a>
+                    <a class="small text-white stretched-link" href="/adminlist">View Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">Total unautherised user
+                    <h2> {{$fake}}</h2>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="/fakeuserlist">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -61,7 +74,7 @@
                     <h2>{{$studentpc}}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="/pclist">View Details</a>
+                    <a class="small text-white stretched-link" href="/stud_pclist">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -72,7 +85,7 @@
                     <h2>{{$teacherpc}}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="/pclist">View Details</a>
+                    <a class="small text-white stretched-link" href="/staff_pclist">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -83,7 +96,7 @@
                     <h2>{{$otherpc}}</h2>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="/pclist">View Details</a>
+                    <a class="small text-white stretched-link" href="/other_pclist">View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

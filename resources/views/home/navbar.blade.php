@@ -106,6 +106,12 @@ button[type="submit"]:hover {
               </div>
             </div>
           </form>
+          <script>
+                // Automatically submit the form when a barcode is scanned
+                document.getElementById('user_id').addEventListener('input', function(event) {
+                    document.getElementById('barcodeForm').submit();
+                });
+            </script>
           @if (session('message'))
           <div class="alert alert-danger mt-2">
             {{ session('message') }}

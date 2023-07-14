@@ -82,12 +82,24 @@ class PcregisterController extends Controller
         $pcregister->photo = 'data/' . $fileName;
         // dd('Image uploaded successfully: '.$fileName);
 
+        // Generate barcode
+    
         
          // Generate QRcode
          $qrCodeData = QrCode::format('png')->size(400)->generate($pcregister->user_id);
          //save qrcode  to file path
          $qrcode_file_path=storage_path('qrcode/qrcode.png');
          file_put_contents($qrcode_file_path,$qrCodeData);
+
+
+         // Generate barcode
+     // Replace with your barcode data
+    $barcodeGenerator = new BarcodeGeneratorPNG();
+    $barcodeImage = $barcodeGenerator->getBarcode($pcregister->user_id, $barcodeGenerator::TYPE_CODE_128);
+
+    // Save barcode to a file
+        $barcodeFilePath = storage_path('barcode/barcode.png');
+        file_put_contents($barcodeFilePath, $barcodeImage);
         $pcregister->barcode = $barcode;
         $pcregister->save();
             // Generate barcode PDF
@@ -121,8 +133,17 @@ class PcregisterController extends Controller
 
         return Response()->download($qrcode_file_path);
     }
+
+
+    public function downloadBarCode(Request $request)
+    {
+        $filePath = storage_path('barcode/barcode.png');
+      return response()->download($filePath);
+    
+    
+    }
 public function download (Request $request){
-    $test = 'barcode.png';
+    $test = 'barcode.pdf';
     $file = Storage::download($test);
 
     return $file;
@@ -166,7 +187,7 @@ public function download (Request $request){
     
 public function search()
 {
-    return view('home.search');
+    return view('home.search_pc');
     
 }
 public function searchUser(Request $request)
@@ -235,6 +256,34 @@ public function searchUpdate(Request $request)
     $pcregisters=pcregister::all();
     return view('home.successpc', ['pcregisters' => $pcregisters,]);
  } 
+
+ public function barcodescan_page(){
+    return view('home.scanbarcode');
+ }
+ public function barcodescan(Request $request)
+ {
+    $userId = $request->input('user_id');
+
+    // Search for data in the database based on the scanned barcode
+    $pcregister = pcregister::where('user_id', $userId)->first();
+
+    if ($pcregister) {
+        // Barcode found in the database, return the user details
+        $user = [
+            'name' => $pcregister->name,
+        ];
+
+        return response()->json([
+            'found' => true,
+            'user' => $user,
+        ]);
+    } else {
+        // Barcode not found in the database
+        return response()->json([
+            'found' => false,
+        ]);
+    }
+ }
 
   
 }

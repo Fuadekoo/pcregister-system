@@ -7,7 +7,7 @@ body{
 header{
   position: fixed;
   background: #22242A;
-  padding: 20px;
+  padding: 40px;
   width: 100%;
   height: 30px;
 }
@@ -19,7 +19,9 @@ header{
   font-size: 22px;
   font-weight: 900;
 }
-
+.h3{
+  position:fixed;
+}
 .left_area span{
   color: #19B3D3;
 }
@@ -45,7 +47,7 @@ header{
 
 .sidebar {
   background: #2f323a;
-  margin-top: 70px;
+  margin-top: 60px;
   padding-top: 30px;
   position: fixed;
   left: 0;
@@ -53,6 +55,7 @@ header{
   height: 100%;
   transition: 0.5s;
   transition-property: left;
+  overflow-y: auto;
 }
 
 .sidebar .profile_image{

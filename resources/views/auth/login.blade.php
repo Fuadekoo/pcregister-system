@@ -78,11 +78,12 @@
     }
 
     .icon-lock {
-        background-image: url('lock-icon.png'); /* Replace with your lock icon image path */
-    }
+    background-image: url('{{ asset('images/lock-solid.svg') }}');
+}
+
 
     .icon-person {
-        background-image: url('person-icon.png'); /* Replace with your person icon image path */
+        background-image: url('{{ asset('images/user-solid.svg') }}'); /* Replace with your person icon image path */
     }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -93,20 +94,31 @@
 </a>
 
 <div class="login-container">
+    <div>
+        <h1>GET-PC MANAGEMENT SYSTEM</h1>
+    </div>
     <div class="login-title">Login</div>
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <div class="mb-3">
-            <span class="icon-person"></span>
+        <div class="mb-3 input-group align-items-start border">
+
             <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Email" />
+            <span class="input-group-text">
+        <span class="icon-person" style="width: 20px; height: 20px;"></span>
+    </span>
         </div>
 
-        <div class="mb-3">
-            <span class="icon-lock"></span>
-            <input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" placeholder="Password" />
-        </div>
+        <div class="mb-3 input-group align-items-start border">
+
+            <input id="password" class="form-control border-0" type="password" name="password" required autocomplete="current-password" placeholder="Password" />
+            <span class="input-group-text">
+        <span class="icon-lock" style="width: 20px; height: 20px;"></span>
+    </span>
+    </div>
+
+
 
         <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" id="remember_me" name="remember" />

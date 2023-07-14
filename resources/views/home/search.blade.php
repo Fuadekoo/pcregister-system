@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-@include('home.header')
+  @include('home.header')
+  <style>
+        body {
+      background-image: url('{{ asset('images/nodata.png') }}');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .no-data {
+      color: red;
+      font-size: 24px;
+      animation: fadeIn 1s ease-in-out infinite alternate;
+    }
+
+    .search-info {
+      color: green;
+      font-size: 50px;
+      animation: fadeIn 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<!-- header start -->
-@include('home.navbar')
+  <!-- header start -->
+  @include('home.navbar')
   <!-- header end -->
 
   <section class="home">
-    <h1>ASTU</h1>
+  
   </section>
 
   <section class="content">
-    <h1 style="color:red">no data</h1>
+    <h1 class="no-data">No Data</h1>
     <br/>
-    <h2 style="color:red">search correctly</h2>
-   </section>
+    <h2 class="search-info">Please search correctly</h2>
+  </section>
 
   <script>
-    //Javacript for the scroll indicator bar
-    window.addEventListener("scroll", () => {
-      const indicatorBar = document.querySelector(".scroll-indicator-bar");
-
-      const pageScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollValue = (pageScroll / height) * 100;
-
-      indicatorBar.style.width = scrollValue + "%";
-    });
-
-    //Responsive navigation menu toggle
-    const menuBtn = document.querySelector(".nav-menu-btn");
-    const closeBtn = document.querySelector(".nav-close-btn");
-    const navigation = document.querySelector(".navigation");
-
-    menuBtn.addEventListener("click", () => {
-      navigation.classList.add("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-      navigation.classList.remove("active");
-    });
+    // JavaScript code here
   </script>
-
 </body>
+
 </html>
-
-
-

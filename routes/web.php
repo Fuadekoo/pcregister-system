@@ -19,7 +19,7 @@ use App\Http\Controllers\Excelcontroller;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/auth.login');
 });
 
 Route::middleware([
@@ -66,6 +66,11 @@ Route::get('download-qr-code', [PcregisterController::class, 'downloadQRCode'])-
 Route::get('/pcregister/searchbyqr', [PcregisterController::class, 'searchbyqr'])->name('pcregisters.searchbyqr');
 
 Route::post('/pcregister/searchbyqr', [PcregisterController::class, 'qr_result'])->name('download.qr_result');
+
+Route::get('/barcodescan', [PcregisterController::class,'barcodescan_page'])->name('barcodescan_page');
+
+Route::post('/barcodescan', [PcregisterController::class,'barcodescan'])->name('barcodescan');
+
 Route::get('/alldownload', [PcregisterController::class, 'alldownload'])->name('alldownload');
 
 });
@@ -74,18 +79,29 @@ Route::get('/alldownload', [PcregisterController::class, 'alldownload'])->name('
 Route::middleware(['auth', 'web','usertype:1'])->group(function () {
     Route::get('/component', [adminController::class, 'component'])->name('component');
     Route::get('/securitylist', [adminController::class, 'showsecurity'])->name('showsecurity');
-    Route::get('/pclist', [adminController::class, 'showpc'])->name('showpc');
+    Route::get('/adminlist', [adminController::class, 'show_admin_security'])->name('showsecurity');
+    Route::get('/fakeuserlist', [adminController::class, 'show_fake_security'])->name('showsecurity');
+    Route::get('/stud_pclist', [adminController::class, 'show_stud_pc'])->name('show_stud_pc');
+    Route::get('/staff_pclist', [adminController::class, 'show_staff_pc'])->name('show_staff_pc');
+    Route::get('/other_pclist', [adminController::class, 'show_other_pc'])->name('show_other_pc');
 
     Route::get('/permission', [adminController::class, 'permission'])->name('home.permisson');
     Route::post('/admin/update', [adminController::class, 'update'])->name('admin.update');
-
-
+    Route::post('/searchpc', [adminController::class, 'searchpc'])->name('searchpc');
 
 
     Route::get('/export', [Excelcontroller::class, 'export'])->name('export');
     Route::post('/import', [Excelcontroller::class, 'import'])->name('import');
-    Route::get('/register', [adminController::class, 'allregister'])->name('register');
+    Route::get('/allregister', [adminController::class, 'allregister'])->name('allregister');
     Route::get('/about', [adminController::class, 'about'])->name('about.admin');
+    route::get('/register',function(){
+        return view('admin.register');
+    });
+    Route::post('/register', [adminController::class, 'create'])->name('users.create');
+
+
+    route::get('/search_pc_user',[pcregisterController::class,'search_pc']);
+    Route::post('/search_pc_user', [PcregisterController::class, 'search_pc_User'])->name('search_pc_User');
 
     });
     Route::middleware(['auth', 'web','usertype:2'])->group(function () {

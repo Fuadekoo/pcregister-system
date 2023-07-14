@@ -28,9 +28,7 @@
             </nav>
             <h1>security list</h1>
             <section class="content">
-                <div>
-                    <a href="{{ route('export') }}" class="btn btn-primary">Export users</a>
-                </div>
+ 
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -50,11 +48,14 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                @if($user->usertype == 0)
+                            @if($user->usertype == 0)
                                 Security User
-                                @else
+                            @elseif($user->usertype == 1)
                                 Admin
-                                @endif
+                            @else
+                                unautherised security
+                            @endif
+
                             </td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->address }}</td>

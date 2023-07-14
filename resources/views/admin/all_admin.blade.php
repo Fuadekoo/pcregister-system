@@ -28,9 +28,7 @@
             </nav>
             <h1>security list</h1>
             <section class="content">
-                <div>
-                    <a href="{{ route('export') }}" class="btn btn-primary">Export users</a>
-                </div>
+
                 <table class="table table-striped">
                     <thead>
                         <tr>
