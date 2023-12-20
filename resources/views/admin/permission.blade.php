@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>admin</title>
+    <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -32,10 +33,10 @@
     <form action="{{ route('admin.update') }}" method="POST" class="form">
     @csrf
     <div class="form-group">
-        <label for="user">Select User:</label>
+        <label for="user">Select security_id:</label>
         <select name="user_id" id="user" class="form-control select2" onchange="updateUserType(this)">
             @foreach ($users as $user)
-                <option value="{{ $user->id }}" data-usertype="{{ $user->usertype }}">{{ $user->name }}</option>
+                <option value="{{ $user->id }}" data-usertype="{{ $user->usertype }}">{{ $user->security_id }}</option>
             @endforeach
         </select>
     </div>

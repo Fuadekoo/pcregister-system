@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>admin</title>
+    <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- Add your custom CSS files if needed -->
     <link rel="stylesheet" href="path/to/your/custom.css">

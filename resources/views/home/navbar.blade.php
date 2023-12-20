@@ -62,9 +62,11 @@ button[type="submit"]:hover {
 </style>
 
 <header>
+<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <img src="{{ asset('images/ASTU.jpg') }}" alt="Logo" class="logo-img">
+    <img src="{{ asset('images/ASTU.jpg') }}" alt="Logo" class="logo-img">
+      <!-- <img src="{{ asset('images/guard.png') }}" alt="Logo" class="logo-img"> -->
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,7 +100,7 @@ button[type="submit"]:hover {
             @csrf
             <div class="input-group">
               <input id="user_id" type="text" class="form-control @error('user_id') is-invalid @enderror"
-                name="user_id" value="{{ old('user_id') }}" required autofocus>
+                name="user_id" value="{{ old('user_id') }}" required autofocus placeholder="scan using barcode reader">
               <div class="input-group-append">
                 <button type="submit" class="btn btn-primary">
                   <i class="fas fa-search"></i>

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>admin</title>
+    <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- Add your custom CSS files if needed -->
     <link rel="stylesheet" href="path/to/your/custom.css">
@@ -27,6 +28,17 @@
     <div class="content">
         <div class="container-fluid px-4">
     <h1 class="mt-5">Dashboard</h1>
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>

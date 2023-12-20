@@ -120,8 +120,17 @@
                                         '</tbody>' +
                                         '</table>';
 
-                                      
+                                                  // User exists, play "userFound" sound
+                var userFoundSound = document.getElementById('userFoundSound');
+                if (userFoundSound) {
+                    userFoundSound.play();
+                }    
                                 } else {
+                                    // No user found, play "userNotFound" sound
+                var userNotFoundSound = document.getElementById('userNotFoundSound');
+                if (userNotFoundSound) {
+                    userNotFoundSound.play();
+                }
                                     confirm('There is no user with this QR code');
                                 }
                             }
@@ -196,6 +205,9 @@
     @yield('scripts')
     <div style="height:250px;"></div>
     @include('home.footer')
+    <audio id="userFoundSound" src="{{ asset('path/to/user_found.mp3') }}"></audio>
+<audio id="userNotFoundSound" src="{{ asset('path/to/user_not_founds.mp3') }}"></audio>
+
 </body>
 </html>
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>admin</title>
+    <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <style>

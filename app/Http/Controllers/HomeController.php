@@ -23,7 +23,7 @@ class HomeController extends Controller
             $fake=user::where('usertype','2')->count();
             $studentpc=pcregister::where('description','student')->count();
             $teacherpc=pcregister::where('description','teacher')->count();
-            $otherpc=pcregister::where('description','others')->count();
+            $otherpc=pcregister::where('description','other')->count();
             return view('admin.dashboard',compact('alluser','user','admin','fake','studentpc','teacherpc','otherpc'));
             // return view('admin.home');
         }

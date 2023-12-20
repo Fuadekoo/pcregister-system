@@ -84,6 +84,7 @@ Route::get('download-code', [PcregisterController::class, 'downloadBothCode'])->
 Route::middleware(['auth', 'web','usertype:1'])->group(function () {
     Route::get('/component', [adminController::class, 'component'])->name('component');
     Route::get('/securitylist', [adminController::class, 'showsecurity'])->name('showsecurity');
+    Route::get('/dev', [adminController::class, 'dev'])->name('devloper');
     Route::get('/adminlist', [adminController::class, 'show_admin_security'])->name('showsecurity');
     Route::get('/fakeuserlist', [adminController::class, 'show_fake_security'])->name('showsecurity');
     Route::get('/stud_pclist', [adminController::class, 'show_stud_pc'])->name('show_stud_pc');

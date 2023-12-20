@@ -89,6 +89,7 @@
         background-image: url('{{ asset('images/user-solid.svg') }}'); /* Replace with your person icon image path */
     }
 </style>
+<title>login</title>
 <link rel="icon" href="images/guard.png" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -98,6 +99,11 @@
 </a>
 
 <div class="login-container">
+@if($errors->any())
+        <div class="alert alert-danger" role="alert">
+            {{ $errors->first() }}
+        </div>
+        @endif
     <div style="color:green" class="logo">
         <h1>ASTU GET-PC MS</h1>
     </div>

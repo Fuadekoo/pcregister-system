@@ -132,7 +132,9 @@ class adminController extends Controller
     
     }
 }
-
+public function dev(){
+    return view('admin.developer');
+}
 
 
 

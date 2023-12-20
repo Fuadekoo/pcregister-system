@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>admin</title>
+    <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- Add your custom CSS files if needed -->
     <link rel="stylesheet" href="path/to/your/custom.css">
@@ -32,20 +33,24 @@
             <li class="breadcrumb-item active">all security register</li>
         </ol>
     </nav>
+    
     <form action="{{ route('import') }}" method="post" enctype="multipart/form-data" class="my-4">
     @csrf
     <div class="input-group">
-        <input type="file" name="users" id="users" required class="form-control">
+        <input type="file" name="users" id="users" required class="form-control" required accept=".xlsx, .xls">
         <button type="submit" class="btn btn-primary">Import</button>
     </div>
 </form>
+@error('users')
+    <div class="alert alert-danger mt-2">{{ $message }}</div>
+@enderror
 <div>
-  <h1>import excel file is must be 6 colomns</h1>
+  <h1>import excel file is must be 6 colomns with headers</h1>
   <p>must be writen in this form</p>
   <ul>
     <li>security_id</li>
     <li>name</li>
-    <li>emails</li>
+    <li>email</li>
     <li>phone</li>
     <li>adreess</li>
     <li>password</li>
