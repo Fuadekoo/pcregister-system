@@ -52,9 +52,9 @@
   </section>
 
   <section class="content">
-    <h1 class="no-data">No Data</h1>
+    <h1 class="no-data"> {{__('search.nodata')}} </h1>
     <br/>
-    <h2 class="search-info">Please search correctly</h2>
+    <h2 class="search-info">{{__('search.Pleasesearch')}}</h2>
   </section>
 
   <script>

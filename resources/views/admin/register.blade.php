@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>admin</title>
+    <title>{{__('registeradmin.admin')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
@@ -96,36 +96,36 @@
   </a>
 <div class="text-center">
     <div class="registration-container">
-        <div class="registration-title">Register</div>
+        <div class="registration-title">{{__('registeradmin.Register')}}</div>
 
         <form method="POST" action="{{ route('users.create') }}">
             @csrf
 
             <div class="mb-3">
-                <input id="id" class="form-control" type="text" name="security_id" :value="old('userid')" required autofocus autocomplete="name" placeholder="security_id" />
+                <input id="id" class="form-control" type="text" name="security_id" :value="old('userid')" required autofocus autocomplete="name" placeholder="{{__('registeradmin.security_id')}}" />
             </div>
             <div class="mb-3">
-                <input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Name" />
-            </div>
-
-            <div class="mb-3">
-                <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Email" />
+                <input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="{{__('registeradmin.Name')}}" />
             </div>
 
             <div class="mb-3">
-                <input id="phone" class="form-control" type="number" name="phone" :value="old('phone')" required autocomplete="username" placeholder="Phone" />
+                <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="{{__('registeradmin.Email')}}" />
             </div>
 
             <div class="mb-3">
-                <input id="address" class="form-control" type="text" name="address" :value="old('address')" required autocomplete="username" placeholder="Address" />
+                <input id="phone" class="form-control" type="number" name="phone" :value="old('phone')" required autocomplete="username" placeholder="{{__('registeradmin.Phone')}}" />
             </div>
 
             <div class="mb-3">
-                <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" placeholder="Password" />
+                <input id="address" class="form-control" type="text" name="address" :value="old('address')" required autocomplete="username" placeholder="{{__('registeradmin.Address')}}" />
             </div>
 
             <div class="mb-3">
-                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" />
+                <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" placeholder="{{__('registeradmin.Password')}}" />
+            </div>
+
+            <div class="mb-3">
+                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="{{__('registeradmin.ConfirmPassword')}}" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -139,11 +139,10 @@
 
             <div class="mb-3 text-end">
                 <a class="login-link" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
                 </a>
 
                 <button class="submit-button" type="submit">
-                    {{ __('Register') }}
+                    {{ __('registeradmin.Register') }}
                 </button>
             </div>
         </form>

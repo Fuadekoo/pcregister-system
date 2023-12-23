@@ -2,19 +2,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <h3>About Us</h3>
-        <p>this software is developed for Adama Science and Technology University.it si used to check student and staff member laptop register and check owner of their devices.</p>
+        <h3>{{__('footer.AboutUs')}}</h3>
+        <p>{{__('footer.softwareisdeveloped')}}</p>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <h3>Contact Us</h3>
+        <h3>{{__('footer.ContactUs')}}</h3>
         <ul class="contact-info">
-          <li><i class="uil uil-location-point"></i> Adama, Ethiopia</li>
+          <li><i class="uil uil-location-point"></i>{{__('footer.Adama')}}</li>
           <li><i class="uil uil-phone"></i>(123) 456-7890</li>
           <li><i class="uil uil-envelope"></i>astu@gmail.com</li>
         </ul>
       </div>
       <div class="col-lg-4 col-md-12 col-sm-12">
-        <h3>Follow Us</h3>
+        <h3>{{__('footer.FollowUs')}}</h3>
         <ul class="social-media">
           <li><a href="https://www.facebook.com/adamaastu/"><i class="uil uil-facebook"></i></a></li>
           <li><a href="https://www.astu.edu.et/"><i class="uil uil-twitter"></i></a></li>
@@ -27,7 +27,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-12">
-          <p>&copy; 2023 ASTU. All rights reserved.</p>
+          <p>&copy; {{__('footer.reserved')}}</p>
         </div>
     
       </div>

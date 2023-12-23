@@ -64,20 +64,20 @@
     <div style="height:150px;"></div>
     <div class="container">
         <section class="home">
-            <h1>ASTUPC Users Detail</h1>
+            <h1>{{__('search_result.ASTUPCUsersDetail')}}</h1>
         </section>
         @include('sweetalert::alert')
         <section class="content">
             <table>
                 <thead>
                     <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Description</th>
-                        <th>PC Name</th>
-                        <th>Serial Number</th>
+                        <th>{{__('search_result.UserID')}}</th>
+                        <th>{{__('search_result.Username')}}</th>
+                        <th>{{__('search_result.Description')}}</th>
+                        <th>{{__('search_result.PCName')}}</th>
+                        <th>{{__('search_result.SerialNumber')}}</th>
                         
-                        <th>Photo</th>
+                        <th>{{__('search_result.Photo')}}</th>
                         
                     </tr>
                 </thead>
@@ -96,7 +96,7 @@
                         <img src="{{ asset($user->photo) }}" alt="Photo" style="width: 150px; height: 150px; border-radius: 80%; object-fit: cover;">
 
                     @else
-                        No photo available
+                    {{__('search_result.Nophoto')}}
                     @endif
 
                                                             

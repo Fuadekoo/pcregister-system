@@ -105,25 +105,25 @@ footer a {
     <div style="height:150px;"></div>
     <div class="container">
         @include('sweetalert::alert')
-        <h1>PC Register Page</h1>
+        <h1>{{__('addpc.PCRegisterPage')}}</h1>
 
         <form method="POST" action="{{ route('pcregisters.store') }}" enctype="multipart/form-data">
             @csrf
 
-            <label for="user_id">User ID:</label>
+            <label for="user_id">{{__('addpc.UserID')}}</label>
             <input type="text" name="user_id" id="user_id">
             <br/>
             @error('user_id')
             <span class="error">{{ $message }}</span>
             @enderror
 
-            <label for="username">Username:</label>
+            <label for="username">{{__('addpc.Username')}}</label>
             <input type="text" name="username" id="username">
             @error('username')
             <span class="error">{{ $message }}</span>
             @enderror
 
-            <label for="description">Description:</label>
+            <label for="description">{{__('addpc.Description')}}</label>
             <select name="description" id="description">
                 <option value="teacher">Teacher</option>
                 <option value="student">Student</option>
@@ -134,19 +134,19 @@ footer a {
             @enderror
 
 
-            <label for="pc_name">PC Name:</label>
+            <label for="pc_name">{{__('addpc.PCName')}}</label>
             <input type="text" name="pc_name" id="pc_name">
             @error('pc_name')
             <span class="error">{{ $message }}</span>
             @enderror
 
-            <label for="serial_number">Serial Number:</label>
+            <label for="serial_number">{{__('addpc.SerialNumber')}}</label>
             <input type="text" name="serial_number" id="serial_number">
             @error('serial_number')
             <span class="error">{{ $message }}</span>
             @enderror
 
-            <label for="photo">Photo:</label>
+            <label for="photo">{{__('addpc.Photo')}}</label>
             <div class="row">
                 <div class="col-md-6">
                     <div id="my_camera"></div>
@@ -160,7 +160,7 @@ footer a {
             </div>
 
             <div class="text-center">
-                <button type="submit">Save</button>
+                <button type="submit">{{__('addpc.Save')}}</button>
             </div>
         </form>
     </div>

@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>admin</title>
+    <title>{{__('pclist.admin')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
@@ -23,10 +23,10 @@
 
     <div class="content">
     <div class="container-fluid px-4">
-    <h1 class="mt-4">Dashboard</h1>
+    <h1 class="mt-4">{{__('pclist.Dashboard')}}</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">pclist</li>
+            <li class="breadcrumb-item active">{{__('pclist.pclist')}}</li>
         </ol>
     </nav>
 
@@ -45,20 +45,20 @@
               </form>
         </div>
         <div>
-        <h1>pclist</h1>
+        <h1>{{__('pclist.pclist')}}</h1>
         </div>
  
         <section class="content">
         <table>
                 <thead>
                     <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Description</th>
-                        <th>PC Name</th>
-                        <th>Serial Number</th>
-                        <th>Photo</th>
-                        <th>register by</th>
+                        <th>{{__('pclist.UserID')}}</th>
+                        <th>{{__('pclist.Username')}}</th>
+                        <th>{{__('pclist.Description')}}</th>
+                        <th>{{__('pclist.PCName')}}</th>
+                        <th>{{__('pclist.SerialNumber')}}</th>
+                        <th>{{__('pclist.Photo')}}</th>
+                        <th>{{__('pclist.registerby')}}</th>
                       
                     </tr>
                 </thead>

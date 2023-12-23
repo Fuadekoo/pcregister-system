@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>admin</title>
+    <title>{{__('all_admin.admin')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">

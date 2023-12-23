@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('home/css/security.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-    <title>qrcode generation</title>
+    <title>{{__('download.qrcodegeneration')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <!-- <link rel="icon" href="images/ASTU.png" type="image/x-icon"> -->
  </head>
@@ -14,7 +14,7 @@
   
  @include('home.navbar')
 <div style="height:150px;"></div>
- <h1>QrCOde download page</h1>
+ <h1>{{__('download.QrCOdedownloadpage')}}</h1>
 
 
 

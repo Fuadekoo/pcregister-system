@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>admin</title>
+    <title>{{__('all_admin.admin')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- Add your custom CSS files if needed -->
@@ -27,10 +27,10 @@
 
     <div class="content">
         <div class="container-fluid px-4">
-    <h1 class="mt-5">Dashboard</h1>
+    <h1 class="mt-5">{{__('all_admin.Dashboard')}}</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-5">
-            <li class="breadcrumb-item active">all security register</li>
+            <li class="breadcrumb-item active">{{__('all_admin.allsecurityregister')}}</li>
         </ol>
     </nav>
     
@@ -38,24 +38,24 @@
     @csrf
     <div class="input-group">
         <input type="file" name="users" id="users" required class="form-control" required accept=".xlsx, .xls">
-        <button type="submit" class="btn btn-primary">Import</button>
+        <button type="submit" class="btn btn-primary">{{__('all_admin.Import')}}</button>
     </div>
 </form>
 @error('users')
     <div class="alert alert-danger mt-2">{{ $message }}</div>
 @enderror
 <div>
-  <h1>import excel file is must be 6 colomns with headers</h1>
-  <p>must be writen in this form</p>
+  <h1>{{__('all_admin.h1note')}}</h1>
+  <p>{{__('all_admin.must')}}</p>
   <ul>
-    <li>security_id</li>
-    <li>name</li>
-    <li>email</li>
-    <li>phone</li>
-    <li>adreess</li>
-    <li>password</li>
+  <li>{{__('all_admin.security_id')}}</li>
+      <li>{{__('all_admin.Name')}}</li>
+      <li>{{__('all_admin.Email')}}</li>
+      <li>{{__('all_admin.address')}}</li>
+      <li>{{__('all_admin.Phone')}}</li>
+      <li>{{__('all_admin.password')}}</li>
   </ul>
-  <p>only the above form is include in excel files</p>
+  <p>{{__('all_admin.only')}}</p>
 </div>
 </div>
 

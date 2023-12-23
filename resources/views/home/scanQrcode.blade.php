@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>qrscanner</title>
+    <title>{{__('scanQrcode.qrscanner')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script defer src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ asset('home/css/security.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
@@ -74,8 +74,8 @@
                         <div id="reader"></div>
                     </div>
                     <div class="col" style="padding:30px;">
-                        <h4>SCAN RESULT</h4>
-                        <div id="result">Result Here</div>
+                        <h4>{{__('scanQrcode.SCANRESULT')}}</h4>
+                        <div id="result">{{__('scanQrcode.ResultHere')}}</div>
                         <div id="userDetails"></div> <!-- New element to display user details -->
                     </div>
                 </div>

@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.0",
+        "flag-icon-css": "^4.1.7",
         "instascan": "^1.0.0"
     }
 }

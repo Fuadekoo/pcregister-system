@@ -56,13 +56,13 @@
   <div class="error-symbol">
     <span class="icon">!</span>
   </div>
-  <h2>Permission Not Granted</h2>
-  <p>Your account needs to be activated by an administrator.</p>
-  <p>Please go to admin  to activate your account.</p>
+  <h2>{{__('fake.PermissionNotGranted')}}</h2>
+  <p>{{__('fake.Youraccountactivated')}}</p>
+  <p>{{__('fake.gotoadmin)}}</p>
   <div>
   <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-link nav-link">LOGOUT</button>
+            <button type="submit" class="btn btn-link nav-link">{{__('fake.logout)}}</button>
           </form>
   </div>
 </div>

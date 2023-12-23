@@ -86,7 +86,7 @@
     <div style="height:150px;"></div>
     <div class="container">
         <section class="home">
-            <h1>ASTUPC Users Detail</h1>
+            <h1>{{__('showpc.ASTUPCUsers')}}</h1>
         </section>
         @include('sweetalert::alert')
         <section class="content">
@@ -109,14 +109,14 @@
             <table>
                 <thead>
                     <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Description</th>
-                        <th>PC Name</th>
-                        <th>Serial Number</th>
-                        <th>Photo</th>
-                        <th>EDIT</th>
-                        <th>DELETE</th>
+                        <th>{{__('showpc.UserID')}}</th>
+                        <th>{{__('showpc.Username')}}</th>
+                        <th>{{__('showpc.Description')}}</th>
+                        <th>{{__('showpc.PCName')}}</th>
+                        <th>{{__('showpc.SerialNumber')}}</th>
+                        <th>{{__('showpc.Photo')}}</th>
+                        <th>{{__('showpc.Edit')}}</th>
+                        <th>{{__('showpc.Delete')}}</th>
                        
                     </tr>
                 </thead>

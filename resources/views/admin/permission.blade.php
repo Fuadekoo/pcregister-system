@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>admin</title>
+    <title> {{__('permission.admin')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
@@ -23,17 +23,17 @@
 
     <div class="content">
     <div class="container-fluid px-4">
-    <h1 class="mt-5">Grant permission for User</h1>
+    <h1 class="mt-5">{{__('permission.admin')}}</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-5">
-            <li class="breadcrumb-item active">Grant permission for User</li>
+            <li class="breadcrumb-item active">{{__('permission.Grant')}}</li>
         </ol>
     </nav>
     <!-- <h2>Grant permission for User</h2> -->
     <form action="{{ route('admin.update') }}" method="POST" class="form">
     @csrf
     <div class="form-group">
-        <label for="user">Select security_id:</label>
+        <label for="user">{{__('permission.Selectsecurity_id')}}</label>
         <select name="user_id" id="user" class="form-control select2" onchange="updateUserType(this)">
             @foreach ($users as $user)
                 <option value="{{ $user->id }}" data-usertype="{{ $user->usertype }}">{{ $user->security_id }}</option>
@@ -41,14 +41,14 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="usertype">User Type:</label>
+        <label for="usertype">{{__('permission.UserType')}}</label>
         <select name="usertype" id="usertype" class="form-control">
-            <option value="0">user</option>
-            <option value="1">admin</option>
-            <option value="2">unauthorized user</option>
+            <option value="0">{{__('permission.user')}}</option>
+            <option value="1">{{__('permission.admin')}}</option>
+            <option value="2">{{__('permission.unauthorizeduser')}}</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">{{__('permission.Update')}}</button>
 </form>
 
 <script>

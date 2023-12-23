@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('home/css/security.css') }}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-    <title>QR Code Generation</title>
+    <title>{{__('successpc.QR')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <style>
         body {
@@ -56,7 +56,7 @@
     @include('home.navbar')
     <div style="height: 150px;"></div>
     <div class="container">
-        <h1>QR Code Download Page</h1>
+        <h1>{{__('successpc.QRDownload')}}</h1>
 
         <form action="{{ route('pcregisters.searchBarcode') }}" method="post" class="form-inline">
             @csrf

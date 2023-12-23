@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PcregisterController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\Excelcontroller;
+use App\Http\Controllers\LocalizationController;
 
 
 /*
@@ -21,6 +22,8 @@ use App\Http\Controllers\Excelcontroller;
 Route::get('/', function () {
     return view('/auth.login');
 });
+
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
 Route::middleware([
     'auth:sanctum',

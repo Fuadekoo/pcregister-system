@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title>admin</title>
+    <title>{{__('all_admin.admin')}}</title>
     <link rel="icon" href="images/guard.png" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -21,27 +21,27 @@
 
     <div class="content">
         <div class="container-fluid px-4">
-            <h1 class="mt-5">Dashboard</h1>
+            <h1 class="mt-5">{{__('all_admin.Dashboard')}}</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">security list</li>
+                    <li class="breadcrumb-item active">{{__('all_admin.securitylist')}}</li>
                 </ol>
             </nav>
-            <h1>security list</h1>
+            <h1>{{__('all_admin.securitylist')}}</h1>
             <section class="content">
                 <div>
-                    <a href="{{ route('export') }}" class="btn btn-primary">Export users</a>
+                    <a href="{{ route('export') }}" class="btn btn-primary">{{__('all_admin.Exportusers')}}</a>
                 </div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>User ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Photo</th>
+                        <th>{{__('all_admin.UserID')}}</th>
+                            <th>{{__('all_admin.Name')}}</th>
+                            <th>{{__('all_admin.Email')}}</th>
+                            <th>{{__('all_admin.Role')}}</th>
+                            <th>{{__('all_admin.Phone')}}</th>
+                            <th>{{__('all_admin.Address')}}</th>
+                            <th>{{__('all_admin.Photo')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,9 +52,9 @@
                             <td>{{ $user->email }}</td>
                             <td>
                                 @if($user->usertype == 0)
-                                Security User
+                                {{__('all_admin.SecurityUser')}}
                                 @else
-                                Admin
+                                {{__('all_admin.admin')}}
                                 @endif
                             </td>
                             <td>{{ $user->phone }}</td>
