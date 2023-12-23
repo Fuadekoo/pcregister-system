@@ -58,11 +58,11 @@
   </div>
   <h2>{{__('fake.PermissionNotGranted')}}</h2>
   <p>{{__('fake.Youraccountactivated')}}</p>
-  <p>{{__('fake.gotoadmin)}}</p>
+  <p>{{__('fake.gotoadmin')}}</p>
   <div>
   <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-link nav-link">{{__('fake.logout)}}</button>
+            <button type="submit" class="btn btn-link nav-link">{{__('fake.logout')}}</button>
           </form>
   </div>
 </div>
