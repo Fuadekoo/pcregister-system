@@ -112,6 +112,9 @@ Route::middleware(['auth', 'web','usertype:1'])->group(function () {
     route::get('/search_pc_user',[pcregisterController::class,'search_pc']);
     Route::post('/search_pc_user', [PcregisterController::class, 'search_pc_User'])->name('search_pc_User');
 
+    Route::get('/admin/search', 'AdminController@permissionsearch')->name('admin.search');
+
+
     });
     Route::middleware(['auth', 'web','usertype:2'])->group(function () {
         

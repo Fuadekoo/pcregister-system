@@ -26,7 +26,7 @@
 @if(isset($user) && is_object($user))
 {{$user->user_id}}:
     <a href="{{ route('downloadBarCode', ['username' => $user->username]) }}" download>
-        <img src="{{ asset('barcode/'.$user->username.'.png') }}" alt="Barcode">
+        <img src="{{ asset('storage/barcode/'.$user->username.'.png') }}" alt="Barcode">
     </a>
     <a href="{{ route('downloadQRCode', ['username' => $user->username]) }}" download>
         <img src="{{ asset('qrcode/'.$user->username.'.png') }}" alt="qrcode">

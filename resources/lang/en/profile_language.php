@@ -9,7 +9,7 @@ return [
     'Email' => 'Email',
     'save' => 'save',
     'UpdatePassword' => 'Update Password',
-    'Ensure your account is using a long, random password to stay secure.' => 'Ensure your account is using a long, random password to stay secure.',
+    'Ensureyouraccountis' => 'Ensure your account is using a long, random password to stay secure.',
     'CurrentPassword' => 'Current Password',
     'NewPassword' => 'New Password',
     'ConfirmPassword' => 'Confirm Password',

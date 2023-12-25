@@ -135,6 +135,24 @@ class adminController extends Controller
 public function dev(){
     return view('admin.developer');
 }
+public function permissionsearch(Request $request){
+    $searchTerm = $request->input('search_user');
+        $usertype = $request->input('usertype');
+
+        // Perform a search in the database based on the $searchTerm and $usertype
+        $users = User::where('security_id', 'like', '%' . $searchTerm . '%')
+            ->where('usertype', $usertype)
+            ->get();
+
+        // Check if users are found
+        if ($users->count() > 0) {
+            // Update the UI with the search results
+            return response()->json($users);
+        } else {
+            // No users found, return a message
+            return response()->json(['message' => 'No users found']);
+        }
+}
 
 
 
